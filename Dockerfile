@@ -69,8 +69,8 @@ RUN cd ~/ \
 WORKDIR /home/node_dev/nodeProjects
 
 # Copy Meteor application bundle to container
-COPY meteor-app.tar.gz /home/node_dev/nodeProjects
-COPY settings.json /home/node_dev/nodeProjects
+COPY meteor-app.tar.gz /home/node_dev/nodeProjects/meteor-app.tar.gz
+COPY settings.json /home/node_dev/nodeProjects/settings.json
 
 # Run bash
 CMD [ "-s" ]

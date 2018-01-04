@@ -8,7 +8,7 @@
 # =====================================================================
 
 
-# General environmental varables
+# General enviromental varables
 START_DELAY=40
 NODE_HOME=/home/node/
 NODE_PROJECT_NAME=dockerMeteorProduction
@@ -20,9 +20,9 @@ MONGO_URL=mongodb://localhost:27017/myapp
 ROOT_URL=http://my-app.com
 METEOR_SETTINGS="$(cat settings.json)"
 PORT=3000
-NODE_ENV="production"
+NODE_ENV=production
 
-# Export environmental variables for the applicaitons use
+# Export enviromental variables for the applicaitons use
 export MONGO_URL
 export ROOT_URL
 export METEOR_SETTINGS

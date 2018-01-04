@@ -14,9 +14,6 @@ MAINTAINER RoHscx
 # 80 = HTTP, 443 = HTTPS, 3000 = Meteor.JS server 8080 = node-inspector
 EXPOSE 80 8080 443 3000
 
-# Set development environment as default
-ENV NODE_ENV production
-
 # Install Utilities
 RUN apt-get update \
 && apt-get install -qy curl \
@@ -50,7 +47,7 @@ RUN mkdir -p /data/db
 RUN chmod 0777 /data/db
 
 # Add Meteor user
-RUN adduser --disabled-password --gecos "" node_dev
+RUN adduser --disabled-password --gecos "" node_prod
 
 # Run Entrypoint script
 COPY docker-entrypoint.sh /docker-entrypoint.sh
@@ -58,16 +55,16 @@ ENTRYPOINT [ "/docker-entrypoint.sh" ]
 RUN chmod 755 /docker-entrypoint.sh
 
 # Switch to Meteor user and create working directory
-USER node_dev
+USER node_prod
 RUN cd ~/ \
 && mkdir nodeProjects
 
 # Set Docker working directory
-WORKDIR /home/node_dev/nodeProjects
+WORKDIR /home/node_prod/nodeProjects
 
 # Copy Meteor application bundle to container
-COPY meteor-app.tar.gz /home/node_dev/nodeProjects/meteor-app.tar.gz
-COPY settings.json /home/node_dev/nodeProjects/settings.json
+COPY meteor-app.tar.gz /home/node_prod/nodeProjects/meteor-app.tar.gz
+COPY settings.json /home/node_prod/nodeProjects/settings.json
 
 # Run bash
 CMD [ "-s" ]

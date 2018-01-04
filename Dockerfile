@@ -14,10 +14,8 @@ MAINTAINER RoHscx
 # 80 = HTTP, 443 = HTTPS, 3000 = Meteor.JS server 8080 = node-inspector
 EXPOSE 80 8080 443 3000
 
-
 # Set development environment as default
 ENV NODE_ENV production
-
 
 # Install Utilities
 RUN apt-get update \
@@ -31,7 +29,6 @@ RUN apt-get update \
 RUN apt-get clean \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 && locale-gen en_US.UTF-8
-
 
 # Install Nodejs on Ubuntu systems
 # Version must match Meteor Application requirements. meteor node -v

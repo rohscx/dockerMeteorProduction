@@ -12,13 +12,10 @@
 START_DELAY=40
 NODE_HOME=/home/node/
 NODE_PROJECT_NAME=dockerMeteorProduction
-NODE_PROJECT_HOME=/home/node/dockerMeteorProduction
-NODE_PROJECT_APP=/home/node/dockerMeteorProduction
-NODE_PROJECT_CD="cd ~/dockerMeteorProduction"
-NODE_PROJECT_START="meteor --settings settings.json debug > logs/stdout.log 2> logs/stderr.log"
+NODE_PROJECT_HOME=~/
 NODE_PROJECT_APP_BOUNDLE="meteor-app.tar.gz"
 NODE_PROJECT_APP_BOUNDLE_SERVER_DIR=bundle/programs/server
-NODE_PROJECT_APP_BOUNDLE_DIR=bundle
+NODE_PROJECT_APP_BOUNDLE_DIR=~/nodeProjects/bundle
 MONGO_URL=mongodb://localhost:27017/myapp
 ROOT_URL=http://my-app.com
 METEOR_SETTINGS="$(cat settings.json)"
@@ -43,24 +40,25 @@ usage() {
   echo "-s: Initialize environment like -i and start Meteor in foreground." !!!!!
   echo ""
 }
-
-
+# Initialize Nodejs environment
 initConfig() {
   if [ ! "$(ls --ignore meteor-app.tar.gz --ignore package-lock.json --ignore settings.json -A)"  ]; then
     tar -xvf ${NODE_PROJECT_APP_BOUNDLE}
     cd ${NODE_PROJECT_APP_BOUNDLE_SERVER_DIR}
     npm install --production
-    cd ../../
+    cd ${NODE_PROJECT_APP_BOUNDLE_DIR}
   else
     echo "Node configuration already initialized........."
     cd ${NODE_PROJECT_APP_BOUNDLE_DIR}
   fi
 }
 
+# Start MongoDB and redirect standard in and out to log file
 startMongoDB() {
   mongod &
 }
 
+# Start Meteor Project and redirect standard in and out to log file
 startMeteorProject() {
   sleep ${START_DELAY}
   node main.js

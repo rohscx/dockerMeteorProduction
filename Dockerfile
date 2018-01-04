@@ -16,7 +16,7 @@ EXPOSE 80 8080 443 3000
 
 
 # Set development environment as default
-ENV NODE_ENV development
+ENV NODE_ENV production
 
 
 # Install Utilities

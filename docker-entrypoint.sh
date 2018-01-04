@@ -47,7 +47,7 @@ initConfig() {
   if [ ! "$(ls --ignore meteor-app.tar.gz --ignore package-lock.json --ignore settings.json -A)"  ]; then
     tar -xvf ${NODE_PROJECT_APP_BOUNDLE}
     cd ${NODE_PROJECT_APP_BOUNDLE_SERVER_DIR}
-    npm install --production
+    npm install
     cd ${NODE_PROJECT_APP_BOUNDLE_DIR}
   else
     echo "Node configuration already initialized........."
